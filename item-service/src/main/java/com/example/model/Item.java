@@ -2,13 +2,26 @@ package com.example.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Item {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String itemCode;
+	@OneToOne(cascade = CascadeType.ALL)
 	private Brand brand;
+	@OneToOne(cascade = CascadeType.ALL)
 	private Category category;
+	@OneToOne(cascade = CascadeType.ALL)
 	private Uom uom;
+	@OneToOne(cascade = CascadeType.ALL)
 	private StorageArea storageArea;
 	private Integer userId;
 	private Date createDate;
