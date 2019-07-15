@@ -1,5 +1,9 @@
 package com.example.repository;
 
-public interface CatergoryRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.model.Category;
+
+public interface CatergoryRepository extends JpaRepository<Category, Integer>{
 
 }
