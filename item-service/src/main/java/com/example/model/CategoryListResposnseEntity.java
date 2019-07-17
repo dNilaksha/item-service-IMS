@@ -1,18 +1,22 @@
 package com.example.model;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
-public class BrandResposnseEntity {
+public class CategoryListResposnseEntity {
 	private String status;
 	private String msg;
 	private String code;
-	private Brand brand;
-	public Brand getBrand() {
-		return brand;
+	private List<Category> categories;
+	
+	
+	public List<Category> getCategories() {
+		return categories;
 	}
-	public void setBrand(Brand brand) {
-		this.brand = brand;
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 	public String getStatus() {
 		return status;

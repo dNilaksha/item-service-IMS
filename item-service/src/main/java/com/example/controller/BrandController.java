@@ -38,20 +38,20 @@ public ResponseEntity<?> save(@RequestBody Brand brand){
 }
 
 @GetMapping("/getbrand/{id}")
-public ResponseEntity<Brand> fetchById(@PathVariable Integer id){
+public ResponseEntity<?> fetchById(@PathVariable Integer id){
 
-	return ResponseEntity.ok(brandService.findById(id));
+	return brandService.findById(id);
 }
 @PutMapping("/updateBrand/{id}")
-public ResponseEntity<Brand> updateBrand(@PathVariable Integer id,@RequestBody Brand brand){
+public ResponseEntity<?> updateBrand(@PathVariable Integer id,@RequestBody Brand brand){
 	
-	return ResponseEntity.ok(brandService.update(id,brand));
+	return brandService.update(id,brand);
 }
 
 
 @RequestMapping(value = "/brand/{id}",method = RequestMethod.DELETE)
-public ResponseEntity<Brand> delete(@PathVariable Integer id){
-	return ResponseEntity.ok(brandService.delete(id));
+public ResponseEntity<?> delete(@PathVariable Integer id){
+	return brandService.delete(id);
   
   }
   }

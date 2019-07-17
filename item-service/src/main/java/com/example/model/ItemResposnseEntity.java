@@ -3,16 +3,18 @@ package com.example.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BrandResposnseEntity {
+public class ItemResposnseEntity {
 	private String status;
 	private String msg;
 	private String code;
-	private Brand brand;
-	public Brand getBrand() {
-		return brand;
+	private Item item;
+	
+	
+	public Item getItem() {
+		return item;
 	}
-	public void setBrand(Brand brand) {
-		this.brand = brand;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 	public String getStatus() {
 		return status;

@@ -13,9 +13,9 @@ public interface BrandService {
 
 	ResponseEntity<?> save(Brand brand);
 
-	Brand findById(Integer id);
+	ResponseEntity<?> findById(Integer id);
 
-	Brand update(Integer id, Brand brand);
+	ResponseEntity<?> update(Integer id, Brand brand);
 
-	Brand delete(Integer id);
+	ResponseEntity<?> delete(Integer id);
 }

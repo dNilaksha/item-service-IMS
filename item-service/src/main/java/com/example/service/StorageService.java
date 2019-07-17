@@ -1,20 +1,19 @@
 package com.example.service;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
-import com.example.model.Category;
+import com.example.model.StorageArea;
 
-public interface CategoryService {
+public interface StorageService {
 
 	ResponseEntity<?> fetchAll();
 
-	ResponseEntity<?> save(Category category);
+	ResponseEntity<?> save(StorageArea storageArea);
 
 	ResponseEntity<?> findById(Integer id);
 
-	ResponseEntity<?> update(Integer id, Category category);
+	ResponseEntity<?> update(Integer id, StorageArea storageArea);
 
 	ResponseEntity<?> delete(Integer id);
+
 }

@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.model.Brand;
+import com.example.model.BrandListResposnseEntity;
 import com.example.model.BrandResposnseEntity;
+import com.example.model.ResposnseValue;
 import com.example.repository.BrandRepository;
 @Service
 
@@ -21,18 +23,27 @@ public class BrandServiceImpl implements BrandService {
 	@Autowired
 	BrandRepository brandRepository;
 	
+	@Autowired
+	ResposnseValue responseValue;
+	
+	@Autowired
+	BrandListResposnseEntity brandListResposnseEntity;
 	
 	@Override
 	public ResponseEntity<?> fetchAll() {
 		
 		List<Brand> brands = brandRepository.findAll();
 		if(brands == null || brands.size()<=0 || brands.toString().equals("[]")) {
-			brandResponseEntity.setStatus("failed");
-			return new ResponseEntity<>(brandResponseEntity,HttpStatus.BAD_REQUEST);
+			responseValue.setStatus("failed");
+			responseValue.setMsg("Failed");
+			responseValue.setCode("fail");
+			return new ResponseEntity<>(responseValue,HttpStatus.BAD_REQUEST);
 		}else {
-			brandResponseEntity.setStatus("success");
-			
-			return new ResponseEntity<>(brandResponseEntity,HttpStatus.ACCEPTED);
+			brandListResposnseEntity.setStatus("success");
+			brandListResposnseEntity.setMsg("success");
+			brandListResposnseEntity.setCode("success");
+			brandListResposnseEntity.setBrand(brands);
+			return new ResponseEntity<>(brandListResposnseEntity,HttpStatus.ACCEPTED);
 		}
 	
 	}
@@ -43,53 +54,83 @@ public class BrandServiceImpl implements BrandService {
 		
 		Brand brand2 = brandRepository.save(brand);
 		if(brand2==null) {
-			brandResponseEntity.setStatus("failed");
-			return new ResponseEntity<>(brandResponseEntity,HttpStatus.BAD_REQUEST);
+			responseValue.setStatus("failed");
+			responseValue.setMsg("Failed");
+			responseValue.setCode("fail");
+			return new ResponseEntity<>(responseValue,HttpStatus.BAD_REQUEST);
 		}else {
 			
 			brandResponseEntity.setStatus("success");
-			return new ResponseEntity<>(brandResponseEntity,HttpStatus.BAD_REQUEST);
+			brandResponseEntity.setMsg("success");
+			brandResponseEntity.setCode("success");
+			brandResponseEntity.setBrand(brand2);
+			return new ResponseEntity<>(brandResponseEntity,HttpStatus.ACCEPTED);
 		}
 	}
 
 
 	@Override
-	public Brand findById(Integer id) {
+	public ResponseEntity<?> findById(Integer id) {
+		
 		boolean isExist = brandRepository.existsById(id);
 		if (isExist) {
 			
 			Optional<Brand> optional = brandRepository.findById(id);
-			return optional.get();
-			
+			brandResponseEntity.setStatus("success");
+			brandResponseEntity.setMsg("success");
+			brandResponseEntity.setCode("success");
+			brandResponseEntity.setBrand(optional.get());
+			return new ResponseEntity<>(brandResponseEntity,HttpStatus.ACCEPTED);
+			//return new ResponseEntity<>(brandResponseEntity,HttpStatus.BAD_REQUEST);
+ 	
+		}else {
+			responseValue.setStatus("failed");
+			responseValue.setMsg("Failed");
+			responseValue.setCode("fail");
+			return new ResponseEntity<>(responseValue,HttpStatus.BAD_REQUEST);
 		}
 			
-	return null;
+	//return null;
 	}
 
 
 	@Override
-	public Brand update(Integer id, Brand brand) {
+	public ResponseEntity<?> update(Integer id, Brand brand) {
 		Optional<Brand> optional =  brandRepository.findById(id);
 		if(optional.isPresent()) {
+			responseValue.setStatus("success");
+			responseValue.setMsg("success");
+			responseValue.setCode("success");
+			
 			Brand brand2=new Brand();
 			brand2.setId(id);
 			brand2.setName(brand.getName());
-			return brandRepository.save(brand2);
+			brandRepository.save(brand2);
+			return new ResponseEntity<>(responseValue,HttpStatus.ACCEPTED);
 		}else {
-			
-			return null;
+			responseValue.setStatus("failed");
+			responseValue.setMsg("Failed");
+			responseValue.setCode("fail");
+			return new ResponseEntity<>(responseValue,HttpStatus.BAD_REQUEST);
 		}
 		
 				
 	}
 
 	@Override
-	public Brand delete(Integer id) {
+	public ResponseEntity<?> delete(Integer id) {
 		Optional<Brand> optional =  brandRepository.findById(id);
 		if(optional.isPresent()) {
+			
+			responseValue.setStatus("Failed");
+			responseValue.setMsg("Failed");
+			responseValue.setCode("fail");
 			brandRepository.deleteById(id);
 	}
-		return null;
+		responseValue.setStatus("success");
+		responseValue.setMsg("success");
+		responseValue.setCode("success");
+	return new ResponseEntity<>(responseValue,HttpStatus.BAD_REQUEST);
 	}
 
 	

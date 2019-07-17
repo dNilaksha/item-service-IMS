@@ -26,30 +26,30 @@ public class CatergoryController {
 	CategoryService categoryService;
 	
 	@GetMapping("/getCategory")
-	public ResponseEntity<List<Category>> fetchAll() {
-		return ResponseEntity.ok(categoryService.fetchAll());
+	public ResponseEntity<?> fetchAll() {
+		return categoryService.fetchAll();
 	}
 	@PostMapping("/postCategory")
-	public ResponseEntity<Category> save(@RequestBody Category category){
+	public ResponseEntity<?> save(@RequestBody Category category){
 		
-		return ResponseEntity.ok(categoryService.save(category));
+		return categoryService.save(category);
 	}
 
 	@GetMapping("/getCategory/{id}")
-	public ResponseEntity<Category> fetchById(@PathVariable Integer id){
+	public ResponseEntity<?> fetchById(@PathVariable Integer id){
 
-		return ResponseEntity.ok(categoryService.findById(id));
+		return categoryService.findById(id);
 	}
 	@PutMapping("/updateCategory/{id}")
-	public ResponseEntity<Category> updateCategory(@PathVariable Integer id,@RequestBody Category category){
+	public ResponseEntity<?> updateCategory(@PathVariable Integer id,@RequestBody Category category){
 		
-		return ResponseEntity.ok(categoryService.update(id,category));
+		return categoryService.update(id,category);
 	}
 
 
 	@RequestMapping(value = "/category/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<Category> delete(@PathVariable Integer id){
-		return ResponseEntity.ok(categoryService.delete(id));
+	public ResponseEntity<?> delete(@PathVariable Integer id){
+		return categoryService.delete(id);
 	  
 	  }	
 }

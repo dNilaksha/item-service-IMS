@@ -1,18 +1,23 @@
 package com.example.model;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
-public class BrandResposnseEntity {
+public class StoreageAreaListResposnseEntity {
 	private String status;
 	private String msg;
 	private String code;
-	private Brand brand;
-	public Brand getBrand() {
-		return brand;
+	private List<StorageArea> storageAreas;
+	
+	
+	
+	public List<StorageArea> getStorageAreas() {
+		return storageAreas;
 	}
-	public void setBrand(Brand brand) {
-		this.brand = brand;
+	public void setStorageAreas(List<StorageArea> storageAreas) {
+		this.storageAreas = storageAreas;
 	}
 	public String getStatus() {
 		return status;

@@ -3,16 +3,17 @@ package com.example.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BrandResposnseEntity {
+public class StorageAreaResposnseEntity {
 	private String status;
 	private String msg;
 	private String code;
-	private Brand brand;
-	public Brand getBrand() {
-		return brand;
+	private StorageArea storageArea;
+	
+	public StorageArea getStorageArea() {
+		return storageArea;
 	}
-	public void setBrand(Brand brand) {
-		this.brand = brand;
+	public void setStorageArea(StorageArea storageArea) {
+		this.storageArea = storageArea;
 	}
 	public String getStatus() {
 		return status;
